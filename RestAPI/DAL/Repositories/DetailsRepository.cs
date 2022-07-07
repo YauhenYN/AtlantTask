@@ -36,6 +36,16 @@ namespace RestAPI.DAL.Repositories
         {
             return _context.Details;
         }
+        public async Task<Detail> GetIncludingStoreKeeperAsync(int id)
+        {
+            return await _context.Details.Include(detail => detail.StoreKeeper).
+                FirstOrDefaultAsync(detail => detail.DetailId == id);
+        }
+
+        public IQueryable<Detail> GetQueryableIncludingStoreKeepersAsync()
+        {
+            return _context.Details.Include(detail => detail.StoreKeeper);
+        }
 
         public async Task<bool> IsRemovedAsync(int id)
         {

@@ -31,7 +31,7 @@ namespace RestAPI.BLL.Services
 
         public async Task<StoreKeeperDto> GetAsync(int id)
         {
-            var storeKeeper = await _storeKeepersRepository.GetAsyncIncludingDetails(id);
+            var storeKeeper = await _storeKeepersRepository.GetIncludingDetailsAsync(id);
             return storeKeeper.ToStoreKeeperDto();
         }
 

@@ -12,6 +12,7 @@ namespace RestAPI.BLL.Dtos.DetailsDtos
         public string Name { get; init; }
         public int? Count { get; init; }
         public int StoreKeeperId { get; init; }
+        public string StoreKeeperName { get; init; }
         public DateTime CreationDate { get; init; }
         public DateTime? RemovingDate { get; init; }
     }

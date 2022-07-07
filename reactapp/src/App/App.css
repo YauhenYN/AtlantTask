@@ -1,0 +1,70 @@
+body{
+    background-color: #edeef0;
+    margin: 0%;
+}
+.centerColumn{
+    display: flex;
+    flex-direction: column;
+    min-width: 40em;
+    width: 90%;
+    max-width: 100%;
+    background-color: #fff;
+    margin: 1em auto;
+    border-radius: 0.5em;
+    box-shadow: 0 0.5px 2px 0.1px #042039;
+}
+.year {
+    margin-right: 2em;
+}
+footer {
+    color: #083259;
+    font-family: sans-serif;
+    padding: 0.5em 1em;
+    display: flex;
+    flex-direction: row;
+}
+.href {
+    color: #083259;
+    margin-left: 0.5em;
+}
+.commonButtons{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    min-width: 25em;
+}
+.commonButtonsButton{
+    border: solid #fff;
+    box-shadow: 0 0 2px 0.5px #dcf1ff;
+    background-color: inherit;
+    margin: 0.5em 0em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    font-family: fantasy;
+    font-size: inherit;
+    width: 100%;
+    color: #fff;
+}
+.commonButtonsButton:hover{
+    border-color: #359ac6;
+    color: #359ac6;
+}
+.commonButtonsButton:active{
+    border-color: #c63568;
+    color: #c63568;
+}
+.bodyElement {
+    min-height: 90vh;
+}
+.commonButtons a {
+    width: 100%;
+    margin: 0em 0.5em;
+}
+.commonButtonsPanel {
+    background-image: url("./headerImage.jpg");
+    border-radius: 0.5em 0.5em 0em 0em;
+    background-position: center;
+    background-size: 100%;
+    box-shadow: 0px 2px 5px -1px #042039;
+}

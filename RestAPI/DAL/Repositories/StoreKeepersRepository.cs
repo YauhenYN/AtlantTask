@@ -26,7 +26,7 @@ namespace RestAPI.DAL.Repositories
             return await _context.StoreKeepers.FirstOrDefaultAsync(storeKeeper => storeKeeper.StoreKeeperId == id);
         }
 
-        public async Task<StoreKeeper> GetAsyncIncludingDetails(int id)
+        public async Task<StoreKeeper> GetIncludingDetailsAsync(int id)
         {
             return await _context.StoreKeepers.Include(storeKeeper => storeKeeper.Details).
                 FirstOrDefaultAsync(storeKeeper => storeKeeper.StoreKeeperId == id);

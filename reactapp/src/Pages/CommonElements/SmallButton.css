@@ -1,0 +1,17 @@
+.SmallButton{
+    background-color: #77abf752;
+    cursor: pointer;
+    font-family: fantasy;
+    font-size: inherit;
+    color: #042039;
+    box-shadow: 0px 2px 5px -1px #042039;
+    height: 3em;
+    margin: 1em auto;
+    font-weight: bolder;
+    border: none;
+    border-radius: inherit;
+    width: 20%;
+}
+.SmallButton:active{
+    box-shadow: 0px 2px 0px -1px #042039;
+}

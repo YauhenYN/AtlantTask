@@ -1,4 +1,5 @@
-﻿using RestAPI.BLL.Dtos.StoreKeepersDtos;
+﻿using RestAPI.BLL.Dtos.DetailsDtos;
+using RestAPI.BLL.Dtos.StoreKeepersDtos;
 using RestAPI.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,20 @@ namespace RestAPI.BLL.Services
                 FullName = storeKeeper.FullName,
                 DetailsCount = storeKeeper.Details.Count,
                 StoreKeeperId = storeKeeper.StoreKeeperId
+            };
+        }
+        public static DetailDto ToDetailDto(this Detail detail)
+        {
+            return new DetailDto()
+            {
+                DetailId = detail.DetailId,
+                CreationDate = detail.CreationDate,
+                RemovingDate = detail.RemovingDate,
+                Count = detail.Count,
+                NomenclatureCode = detail.NomenclatureCode,
+                Name = detail.Name,
+                StoreKeeperId = detail.StoreKeeperId,
+                StoreKeeperName = detail.StoreKeeper.FullName
             };
         }
     }

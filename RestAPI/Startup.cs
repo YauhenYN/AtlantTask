@@ -41,6 +41,8 @@ namespace RestAPI
                 optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddCors();
+
             services.AddSingleton(new Mapper(new MapperConfiguration(cnf =>
             {
                 cnf.CreateMap<AddDetailDto, Detail>();
@@ -77,6 +79,13 @@ namespace RestAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 

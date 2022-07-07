@@ -13,5 +13,8 @@ namespace RestAPI.DAL.Interfaces
         public Task RemoveByIdAsync(int id);
         public int GetNotRemovedCountByStoreKeeperId(int storeKeeperId);
         public Task<bool> IsRemovedAsync(int id);
+
+        public Task<Detail> GetIncludingStoreKeeperAsync(int id);
+        public IQueryable<Detail> GetQueryableIncludingStoreKeepersAsync();
     }
 }
