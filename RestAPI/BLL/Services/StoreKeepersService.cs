@@ -32,7 +32,7 @@ namespace RestAPI.BLL.Services
         public async Task<StoreKeeperDto> GetAsync(int id)
         {
             var storeKeeper = await _storeKeepersRepository.GetIncludingDetailsAsync(id);
-            return storeKeeper.ToStoreKeeperDto();
+            return storeKeeper == null ? null : storeKeeper.ToStoreKeeperDto();
         }
 
         public async Task<int> GetDetailsCount(int id)
@@ -49,7 +49,7 @@ namespace RestAPI.BLL.Services
             {
                 CurrentPage = selectionDto.PageNumber,
                 PagesCount = (int)Math.Ceiling((double)storeKeepersCount / selectionDto.ElementsCount),
-                Elements = storeKeepers.Select(storeKeeper => storeKeeper.ToStoreKeeperDto())
+                Elements = storeKeepersCount > 0 ? storeKeepers.Select(storeKeeper => storeKeeper.ToStoreKeeperDto()) : new StoreKeeperDto[0]
             };
             return Task.FromResult(selectionResult);
         }

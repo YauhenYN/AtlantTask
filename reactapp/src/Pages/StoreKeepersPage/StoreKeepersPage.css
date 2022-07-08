@@ -1,0 +1,15 @@
+.storeKeeperId{
+    width: 50%;
+}
+.storeKeeperFIO{
+    width: 100%;
+}
+.storeKeeperDetailsCount{
+    width: 50%;
+}
+.StoreKeeperListElement{
+    max-width: 50em;
+}
+.StoreKeeperCreationForm{
+    max-width: 30em;
+}

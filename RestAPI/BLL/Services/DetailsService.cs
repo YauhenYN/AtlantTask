@@ -30,7 +30,7 @@ namespace RestAPI.BLL.Services
         public async Task<DetailDto> GetAsync(int id)
         {
             var detail = await _detailsRepository.GetIncludingStoreKeeperAsync(id);
-            return detail.ToDetailDto();
+            return detail == null ? null : detail.ToDetailDto();
         }
 
         public Task<SelectionResult<DetailDto>> GetManyAsync(PageSelectionDto selectionDto)
@@ -42,7 +42,7 @@ namespace RestAPI.BLL.Services
             {
                 CurrentPage = selectionDto.PageNumber,
                 PagesCount = (int)Math.Ceiling((double)detailsCount / selectionDto.ElementsCount),
-                Elements = details.Select(detail => detail.ToDetailDto())
+                Elements = detailsCount > 0 ? details.Select(detail => detail.ToDetailDto()) : new DetailDto[0]
             };
             return Task.FromResult(selectionResult);
         }

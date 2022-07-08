@@ -19,16 +19,16 @@ function DetailsPage() {
         dispatches();
     }, []);
     return (<>
-        <CreateNewElementPanel details={details} setDetails={setDetails} />
-        <div className="detailListElement">
-            <b className="detailElement detailCode">Номен. код</b>
-            <b className="detailElement detailName">Название</b>
-            <b className="detailElement detailStoreKeeper">Кладовщик</b>
-            <b className="detailElement detailCount">Количество</b>
-            <b className="detailElement detailCreationDate">Дата создания</b>
-            <b className="detailElement detailRemovingDate">Дата удаления</b>
-            <div className="detailElement outOfRemoveImg"/>
+        <div className="ListElement">
+            <b className="listElement detailCode">Номен. код</b>
+            <b className="listElement detailName">Название</b>
+            <b className="listElement detailStoreKeeper">Кладовщик</b>
+            <b className="listElement detailCount">Количество</b>
+            <b className="listElement detailCreationDate">Дата создания</b>
+            <b className="listElement detailRemovingDate">Дата удаления</b>
+            <div className="listElement outOfRemoveImg"/>
         </div>
+        <CreateNewElementPanel details={details} setDetails={setDetails} />
         {details.map(detail => <DetailListElement key={detail.detailId} detail={detail} />)}
         {pageNumber + 1 < pagesCount && <SmallButton text="···" onClick={GetManyDetails(details, setDetails, pageNumber, setPageNumber, setPagesCount)} />}
     </>);
@@ -37,7 +37,15 @@ function DetailsPage() {
 function GetManyDetails(details, setDetails, pageNumber, setPageNumber, setPagesCount) {
     return () => {
         return store.dispatch(thunkCreators.GetManyDetailsThunkСreator(pageNumber + 1, listElementsCount)).then((result) => {
-            setDetails([...details, ...result.data.elements]);
+            let newArray = [...details, ...result.data.elements];
+            let newArrayWithoutRepeating = [...new Set(newArray.map(detail => detail.detailId))];
+            for(let step = 0; step < newArray.length; step++){
+                if(newArray[step].detailId !== newArrayWithoutRepeating[step]) {
+                    newArray.splice(step, 1);
+                    step--;
+                }
+            };
+            setDetails(newArray);
             setPagesCount(result.data.pagesCount);
             setPageNumber(pageNumber + 1);
         });

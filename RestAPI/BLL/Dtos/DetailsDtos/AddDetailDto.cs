@@ -9,9 +9,12 @@ namespace RestAPI.BLL.Dtos.DetailsDtos
     public record AddDetailDto : IValidatableObject
     {
         [Required]
+        [StringLength(20, MinimumLength = 1)]
         public string NomenclatureCode { get; init; }
         [Required]
+        [StringLength(20, MinimumLength = 1)]
         public string Name { get; init; }
+        [Range(0, 1000000)]
         public int? Count { get; init; }
         [Required]
         public int StoreKeeperId { get; init; }

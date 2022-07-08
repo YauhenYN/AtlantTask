@@ -57,9 +57,9 @@ namespace RestAPI.DAL.Repositories
             return _context.StoreKeepers.Include(storeKeeper => storeKeeper.Details);
         }
 
-        public Task<bool> IsExistsAsync(int id)
+        public async Task<bool> IsExistsAsync(int id)
         {
-            return _context.StoreKeepers.AnyAsync(storeKeeper => storeKeeper.StoreKeeperId == id);
+            return await _context.StoreKeepers.AnyAsync(storeKeeper => storeKeeper.StoreKeeperId == id);
         }
 
         public async Task RemoveByIdAsync(int id)

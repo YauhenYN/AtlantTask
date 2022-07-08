@@ -9,7 +9,7 @@
     margin: 1em auto;
     font-weight: bolder;
     border: none;
-    border-radius: inherit;
+    border-radius: 8px;
     width: 20%;
 }
 .SmallButton:active{

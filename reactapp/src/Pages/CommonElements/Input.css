@@ -1,0 +1,20 @@
+.Input{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1em;
+    font-family: sans-serif;
+    font-size: smaller;
+    outline: none;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding: 0.5em 1em;
+    border: solid #92392f;
+    box-shadow: 0px 2px 5px -1px #042039;
+}
+.Input:focus{
+    border-color: #d5a460;
+}
+.Input:valid {
+    border-color: #556b2f;
+}

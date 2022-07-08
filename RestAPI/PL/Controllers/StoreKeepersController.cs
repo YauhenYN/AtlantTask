@@ -49,7 +49,8 @@ namespace RestAPI.PL.Controllers
         [Route("{id}")]
         public async Task<ActionResult> RemoveAsync(int id)
         {
-            if (!await _storeKeepersService.IsExistsAsync(id)) return NotFound();
+            var isExists = await _storeKeepersService.IsExistsAsync(id);
+            if (!isExists) return NotFound();
             else if (!(await _storeKeepersService.GetDetailsCount(id) == 0)) return Conflict();
             await _storeKeepersService.RemoveAsync(id);
             return NoContent();
