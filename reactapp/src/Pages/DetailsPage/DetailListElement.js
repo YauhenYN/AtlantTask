@@ -18,18 +18,20 @@ function DetailListElement(props) {
             <b className="listElement detailRemovingDate" />}
         <div className="listElement outOfRemoveImg">
             {!detail.removingDate &&
-                <img src={removeImg} onClick = {RemoveDetail(detail.detailId, setDetail)} alt="removeImg" className="removeImg" />}
+                <img src={removeImg} onClick = {RemoveDetail(detail.detailId, setDetail, props.setIsLoaded)} alt="removeImg" className="removeImg" />}
         </div>
     </div>
     );
 }
 
-function RemoveDetail(id, setDetail){
+function RemoveDetail(id, setDetail, setIsLoaded){
     return () => {
+        setIsLoaded(false);
         store.dispatch(thunkCreators.RemoveDetailThunkСreator(id)).then(result => {
             store.dispatch(thunkCreators.GetDetailThunkСreator(id)).then(result => {
                 setDetail(result.data);
             })
+            setIsLoaded(true);
         });
     }
 }

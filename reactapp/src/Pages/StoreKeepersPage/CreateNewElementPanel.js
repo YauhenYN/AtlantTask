@@ -9,7 +9,7 @@ function CreateNewElementPanel(props) {
 
     return (<>
         <SmallButton text="Создать" onClick={onClickCreateNewElement} />
-        <form onSubmit={AddStoreKeeper(fullName, props.storeKeepers, props.setStoreKeepers)}
+        <form onSubmit={AddStoreKeeper(fullName, props.storeKeepers, props.setStoreKeepers, props.setIsLoaded)}
             className="StoreKeeperCreationForm CreationForm">
             <div className="AddEnterLine">
                 <div className="dCreationName CreationFormLineElement">
@@ -36,8 +36,9 @@ function onWrapCreationForm() {
     document.getElementsByClassName("CreationForm")[0].style.display = "none";
 }
 
-function AddStoreKeeper(fullName, storeKeepers, setStoreKeepers) {
+function AddStoreKeeper(fullName, storeKeepers, setStoreKeepers, setIsLoaded) {
     return (event) => {
+        setIsLoaded(false);
         event.preventDefault();
         store.dispatch(thunkCreators.AddStoreKeeperThunkСreator(fullName)).then((result) => {
             store.dispatch(thunkCreators.GetStoreKeeperThunkСreator(result.data.id)).then((result) => {
@@ -50,6 +51,7 @@ function AddStoreKeeper(fullName, storeKeepers, setStoreKeepers) {
                     }
                 };
                 setStoreKeepers(newArray);
+                setIsLoaded(true);
             });
         });
     }

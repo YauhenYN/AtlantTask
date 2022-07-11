@@ -12,17 +12,19 @@ function StoreKeeperListElement(props) {
                 <b className="listElement storeKeeperDetailsCount">{storeKeeper.detailsCount}</b>
                 <div className="listElement outOfRemoveImg">
                     {storeKeeper.detailsCount < 1 &&
-                        <img src={removeImg} onClick={RemoveStoreKeeper(storeKeeper.storeKeeperId, setStoreKeeper)} alt="removeImg" className="removeImg" />}
+                        <img src={removeImg} onClick={RemoveStoreKeeper(storeKeeper.storeKeeperId, setStoreKeeper, props.setIsLoaded)} alt="removeImg" className="removeImg" />}
                 </div>
             </div>
         }</>
     );
 }
 
-function RemoveStoreKeeper(id, setStoreKeeper) {
+function RemoveStoreKeeper(id, setStoreKeeper, setIsLoaded) {
     return () => {
+        setIsLoaded(false);
         store.dispatch(thunkCreators.RemoveStoreKeeperThunkСreator(id)).then(result => {
             setStoreKeeper({ isRemoved: true });
+            setIsLoaded(true);
         });
     }
 }
