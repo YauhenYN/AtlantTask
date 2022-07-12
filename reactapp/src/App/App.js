@@ -3,6 +3,7 @@ import DetailsPage from '../Pages/DetailsPage/DetailsPage';
 import StoreKeepersPage from '../Pages/StoreKeepersPage/StoreKeepersPage';
 import './App.css';
 import { Link } from 'react-router-dom';
+import HeaderButton from './HeaderButton';
 
 function App() {
     return (<>
@@ -10,10 +11,10 @@ function App() {
             <div className="commonButtonsPanel">
                 <div className="commonButtons">
                     <Link to="/details">
-                        <button className="commonButtonsButton" type="Button">Детали</button>
+                        <HeaderButton text = "Детали"/>
                     </Link>
                     <Link to="/storekeepers">
-                        <button className="commonButtonsButton" type="Button">Кладовщики</button>
+                        <HeaderButton text = "Кладовщики"/>
                     </Link>
                 </div>
             </div>

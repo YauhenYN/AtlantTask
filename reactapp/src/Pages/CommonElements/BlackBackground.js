@@ -1,10 +1,12 @@
 import "./BlackBackground.css";
 
 function BlackBackground(props) {
-    props.isLoaded ? document.body.style.overflow = "scroll" : document.body.style.overflow = "hidden"
+    props.isLoaded ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
     return (
         !props.isLoaded && <div className="blackBackground">
-            {props.body}
+            <div className="inBlackBackground">
+                {props.body}
+            </div>
         </div>
     );
 }

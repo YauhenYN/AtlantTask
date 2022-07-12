@@ -1,0 +1,1 @@
+export const showScroll = () => document.body.style.overflow = "auto";

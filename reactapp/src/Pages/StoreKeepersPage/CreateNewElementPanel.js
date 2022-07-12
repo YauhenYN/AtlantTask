@@ -3,13 +3,19 @@ import store from "../../Store/store";
 import * as thunkCreators from "../../Store/thunkCreators";
 import SmallButton from "../CommonElements/SmallButton";
 import TextInput from "../CommonElements/TextInput";
+import TextLineModalWindow from "../CommonElements/TextLineModalWindow";
+import { showScroll } from "../commonMethods";
 
 function CreateNewElementPanel(props) {
     const [fullName, setFullName] = useState("");
+    const [isCreationFailed, setIsCreationFailed] = useState(false);
 
     return (<>
+        {isCreationFailed && <TextLineModalWindow text="Не удалось создать запись"
+            onClosing={() => { setIsCreationFailed(false); showScroll(); }} />}
         <SmallButton text="Создать" onClick={onClickCreateNewElement} />
-        <form onSubmit={AddStoreKeeper(fullName, props.storeKeepers, props.setStoreKeepers, props.setIsLoaded)}
+        <form onSubmit={AddStoreKeeper(fullName, props.storeKeepers, props.setStoreKeepers,
+            props.setIsLoaded, setIsCreationFailed)}
             className="StoreKeeperCreationForm CreationForm">
             <div className="AddEnterLine">
                 <div className="dCreationName CreationFormLineElement">
@@ -36,7 +42,7 @@ function onWrapCreationForm() {
     document.getElementsByClassName("CreationForm")[0].style.display = "none";
 }
 
-function AddStoreKeeper(fullName, storeKeepers, setStoreKeepers, setIsLoaded) {
+function AddStoreKeeper(fullName, storeKeepers, setStoreKeepers, setIsLoaded, setIsCreationFailed) {
     return (event) => {
         setIsLoaded(false);
         event.preventDefault();
@@ -53,6 +59,9 @@ function AddStoreKeeper(fullName, storeKeepers, setStoreKeepers, setIsLoaded) {
                 setStoreKeepers(newArray);
                 setIsLoaded(true);
             });
+        }).catch(() => {
+            setIsCreationFailed(true);
+            setIsLoaded(true);
         });
     }
 }

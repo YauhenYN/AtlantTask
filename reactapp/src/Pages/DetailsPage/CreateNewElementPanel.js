@@ -6,6 +6,8 @@ import NumberInput from "../CommonElements/NumberInput";
 import SelectInput from "../CommonElements/SelectInput";
 import SmallButton from "../CommonElements/SmallButton";
 import TextInput from "../CommonElements/TextInput";
+import TextLineModalWindow from "../CommonElements/TextLineModalWindow";
+import { showScroll } from "../commonMethods";
 
 const toLocalShortISOTime = (date) => {
     var tzoffset = (new Date()).getTimezoneOffset() * 60000;
@@ -20,6 +22,7 @@ function CreateNewElementPanel(props) {
     const [count, setCount] = useState(0);
     const [storeKeeper, setStoreKeeper] = useState();
     const [creationDate, setCreationDate] = useState(toLocalShortISOTime(new Date()));
+    const [isCreationFailed, setIsCreationFailed] = useState(false);
 
     useEffect(() => {
         store.dispatch(thunkCreators.GetManyStoreKeepersThunkСreator(0, 1000)).then((result) => {
@@ -30,11 +33,13 @@ function CreateNewElementPanel(props) {
     }, [])
 
     return (<>
+        {isCreationFailed && <TextLineModalWindow text="Не удалось создать запись"
+            onClosing={() => { setIsCreationFailed(false); showScroll(); }} />}
         <SmallButton text="Создать" onClick={onClickCreateNewElement} />
         <form onSubmit={AddDetail(nomenclatureCode, name, count,
             storeKeeper && storeKeeper.split("(")[1].split(")")[0],
             new Date(creationDate).toISOString(),
-            props.details, props.setDetails, props.setIsLoaded)} className="CreationForm">
+            props.details, props.setDetails, props.setIsLoaded, setIsCreationFailed)} className="CreationForm">
             <div className="AddEnterLine">
                 <div className="dCreationNomCode CreationFormLineElement">
                     <b className="CreationFormText">Номен. код</b>
@@ -78,7 +83,7 @@ function onWrapCreationForm() {
     document.getElementsByClassName("CreationForm")[0].style.display = "none";
 }
 
-function AddDetail(nomenclatureCode, name, count, storeKeeperId, creationDate, details, setDetails, setIsLoaded) {
+function AddDetail(nomenclatureCode, name, count, storeKeeperId, creationDate, details, setDetails, setIsLoaded, setIsCreationFailed) {
     return (event) => {
         setIsLoaded(false);
         event.preventDefault();
@@ -95,6 +100,9 @@ function AddDetail(nomenclatureCode, name, count, storeKeeperId, creationDate, d
                 setDetails(newArray);
                 setIsLoaded(true);
             });
+        }).catch(() => {
+            setIsCreationFailed(true);
+            setIsLoaded(true);
         });
     }
 }
