@@ -1,8 +1,9 @@
-body{
+body {
     background-color: #edeef0;
     margin: 0%;
 }
-.centerColumn{
+
+.centerColumn {
     display: flex;
     flex-direction: column;
     min-width: 40em;
@@ -13,9 +14,11 @@ body{
     border-radius: 8px;
     box-shadow: 0 0.5px 2px 0.1px #042039;
 }
+
 .year {
     margin-right: 2em;
 }
+
 footer {
     color: #083259;
     font-family: sans-serif;
@@ -23,18 +26,21 @@ footer {
     display: flex;
     flex-direction: row;
 }
+
 .href {
     color: #083259;
     margin-left: 0.5em;
 }
-.commonButtons{
+
+.commonButtons {
     margin: auto;
     display: flex;
     flex-direction: row;
     width: 50%;
     min-width: 25em;
 }
-.commonButtonsButton{
+
+.commonButtonsButton {
     border: solid #fff;
     box-shadow: 0 0 2px 0.5px #dcf1ff;
     background-color: inherit;
@@ -45,22 +51,49 @@ footer {
     font-size: inherit;
     width: 100%;
     color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
-.commonButtonsButton:hover{
+
+.commonButtonsButton::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    width: 0em;
+    height: 100%;
+    transform: skew(15deg, 0deg);
+    left: 0%;
+    transition: width 0.5s ease-in-out, left ease-out 3s;
+    z-index: -1;
+}
+
+.commonButtonsButton:hover {
     border-color: #359ac6;
     color: #359ac6;
 }
-.commonButtonsButton:active{
+
+.commonButtonsButton:hover::after {
+    width: 20%;
+    left: 80%;
+}
+
+.commonButtonsButton:active {
     border-color: #c63568;
     color: #c63568;
 }
+
 .bodyElement {
     min-height: 90vh;
 }
+
 .commonButtons a {
     width: 100%;
     margin: 0em 0.5em;
 }
+
 .commonButtonsPanel {
     background-image: url("../resources/headerImage.jpg");
     border-radius: 8px 8px 0em 0em;
@@ -68,24 +101,28 @@ footer {
     background-size: 100%;
     box-shadow: 0px 2px 5px -1px #042039;
 }
-.AddEnterLine{
+
+.AddEnterLine {
     display: flex;
     flex-direction: row;
     margin: 1em 1em 2em 1em;
     justify-content: center;
 }
-.CreationFormLineElement{
+
+.CreationFormLineElement {
     margin: 0em 0.5em;
     display: flex;
     flex-direction: column;
 }
-.CreationFormText{
+
+.CreationFormText {
     overflow-wrap: anywhere;
     margin: auto;
     font-family: sans-serif;
     font-size: smaller;
 }
-.CreationForm{
+
+.CreationForm {
     width: 90%;
     background-color: aliceblue;
     margin: 1em auto;
@@ -94,7 +131,8 @@ footer {
     border-radius: 8px;
     display: none;
 }
-.ListElement{
+
+.ListElement {
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -109,23 +147,27 @@ footer {
     font-family: sans-serif;
     font-size: smaller;
 }
-.listElement{
+
+.listElement {
     margin: 0em 0.5em;
     overflow-wrap: anywhere;
 }
-.outOfRemoveImg{
+
+.outOfRemoveImg {
     width: 20%;
 }
-.removeImg{
+
+.removeImg {
     height: 2em;
     cursor: pointer;
 }
-.removeImg:active{
-    filter:blur(1px);
-}
-.BottomButtons{
 
+.removeImg:active {
+    filter: blur(1px);
 }
-.BottomButtons .SmallButton{
+
+.BottomButtons {}
+
+.BottomButtons .SmallButton {
     margin: 1em;
 }
